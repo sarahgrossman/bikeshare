@@ -33,3 +33,7 @@ Django Rest Framework also provides a browsable API that can be accessed at http
 At any time you can enter the db container and launch psql by running `docker-compose exec db psql -U postgres`.
 
 Django also offers its own admin site for CRUD operations on the database at http://127.0.0.1:8000/admin/. Your superuser login credentials should work here as well.
+
+## Running tests
+
+From the root directory, run `docker-compose exec web python manage.py test`.
