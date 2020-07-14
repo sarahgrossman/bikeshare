@@ -74,6 +74,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bikeshare.wsgi.application'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        # Uncomment below to enable SQL logging
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console'],
+        # },
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -127,6 +144,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Django Rest Framework
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
