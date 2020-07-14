@@ -4,7 +4,7 @@ from bicycles.models import Bicycle
 # Serializers define the API representation.
 
 
-class BicycleSerializer(serializers.HyperlinkedModelSerializer):
+class BicycleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bicycle
-        fields = ['owner', 'nickname', 'id']
+        fields = '__all__'
