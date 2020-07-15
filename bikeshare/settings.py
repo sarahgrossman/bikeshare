@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Third party apps
     'rest_framework',
     'rest_framework.authtoken',
+    'graphene_django',
 
     # Local apps
     'users.apps.UsersConfig',
@@ -164,4 +165,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
     ]
+}
+
+GRAPHENE = {
+    'SCHEMA': 'bikeshare.schema.schema'
 }

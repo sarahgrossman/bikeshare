@@ -15,6 +15,7 @@ class BicycleViewsTestCase(TestCase):
         self.admin_client = APIClient()
         admin_token, created = Token.objects.get_or_create(user=self.admin)
         self.admin_client.credentials(HTTP_AUTHORIZATION='Token ' + admin_token.key)
+
         self.bicycle = Bicycle.objects.create(nickname="admin's awesome bike", owner=self.admin)
         self.bicycle_2 = Bicycle.objects.create(nickname="admin's second bike", owner=self.admin)
         self.bicycle_3 = Bicycle.objects.create(nickname="non admin's awesome bike", owner=self.non_admin)
