@@ -23,7 +23,7 @@ from users.views import UserViewSet
 
 
 # Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
 router.register(r'bicycles', BicycleViewSet)
 

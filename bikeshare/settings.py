@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bikeshare.wsgi.application'
 
+APPEND_SLASH = False
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
