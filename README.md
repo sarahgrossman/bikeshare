@@ -22,11 +22,15 @@ You should see logging in your terminal that indicates the development server is
 
 Use the django-admin command to create a superuser: `docker-compose exec web python manage.py createsuperuser`
 
-## Interacting with the API
+## Interacting with the REST API
 
 Using cURL or Postman, you should be able to `GET http://localhost:8000/bicycles/` and `GET http://localhost:8000/users/<optional_user_id>`. The latter endpoint should return either a list containing one user (yours!) or a single object with your user info, depending on whether or not you pass your user ID.
 
 Django Rest Framework also provides a browsable API that can be accessed at http://127.0.0.1:8000/. You should be able to log in (top righthand corner) with your superuser credentials and send API requests directly through this interface.
+
+## Interacting with the GraphQL API
+
+Visit http://127.0.0.1:8000/graphql to launch GraphiQL. This feature is a WIP.
 
 ## Interacting with the database
 
