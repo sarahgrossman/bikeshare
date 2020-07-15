@@ -1,6 +1,6 @@
 # bikeshare
 
-An app designed to pair riders with bikes. Built with [Django](https://www.djangoproject.com/) and [Django Rest Framework](https://www.django-rest-framework.org/).
+An app designed to pair riders with bikes. Built with [Django](https://www.djangoproject.com/), [Django Rest Framework](https://www.django-rest-framework.org/), and [Graphene-Python](https://graphene-python.org/).
 
 ## Prerequisites
 
@@ -26,7 +26,9 @@ Use the django-admin command to create a superuser: `docker-compose exec web pyt
 
 Using cURL or Postman, you should be able to `GET http://localhost:8000/bicycles/` and `GET http://localhost:8000/users/<optional_user_id>`. The latter endpoint should return either a list containing one user (yours!) or a single object with your user info, depending on whether or not you pass your user ID.
 
-Django Rest Framework also provides a browsable API that can be accessed at http://127.0.0.1:8000/. You should be able to log in (top righthand corner) with your superuser credentials and send API requests directly through this interface.
+Other views and methods are restricted based on admin and instance-specific permissions. In order to complete all requests, you will have to send your requests with an authentication header (see [Authentication](#authentication) below).
+
+Django Rest Framework also provides a browsable API that can be accessed at http://127.0.0.1:8000/. Click the "Log in" prompt in the top righthand corner and enter your superuser credentials. You will then be able to send all API requests directly through this interface.
 
 ## Interacting with the GraphQL API
 
@@ -37,6 +39,14 @@ Visit http://127.0.0.1:8000/graphql to launch GraphiQL. This feature is a WIP.
 At any time you can enter the db container and launch psql by running `docker-compose exec db psql -U postgres`.
 
 Django also offers its own admin site for CRUD operations on the database at http://127.0.0.1:8000/admin/. Your superuser login credentials should work here as well.
+
+## Authentication
+
+This project uses token-based authentication provided by [Django Rest Framework](https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication).
+
+To obtain your user token, send a POST request to `http://localhost:8000/api-token-auth/` with a JSON body containing your `username` and `password`.
+
+For all subsequent requests, add a header `Authorization: Token: <your_token_here>`.
 
 ## Running tests
 

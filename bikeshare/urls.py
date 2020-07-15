@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from graphene_django.views import GraphQLView
 from rest_framework import routers
+from rest_framework.authtoken import views
 
 from bicycles.views import BicycleViewSet
 from users.views import UserViewSet
@@ -34,6 +35,7 @@ router.register(r'bicycles', BicycleViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
     url(r'^graphql$', GraphQLView.as_view(graphiql=True)),
 ]
