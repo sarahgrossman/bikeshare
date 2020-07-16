@@ -1,17 +1,18 @@
-import graphene
+from graphene import relay, ObjectType
 from graphene_django.types import DjangoObjectType
+from graphene_django.filter import DjangoFilterConnectionField
 
 from users.models import User
 
 
-class UserType(DjangoObjectType):
+class UserNode(DjangoObjectType):
     class Meta:
         model = User
         exclude = ("password",)
+        filter_fields = ['is_staff']
+        interfaces = (relay.Node,)
 
 
-class Query(object):
-    all_users = graphene.List(UserType)
-
-    def resolve_all_users(self, info, **kwargs):
-        return User.objects.all()
+class Query(ObjectType):
+    user = relay.Node.Field(UserNode)
+    all_users = DjangoFilterConnectionField(UserNode)

@@ -1,17 +1,20 @@
-import graphene
+from graphene import relay, ObjectType
 from graphene_django.types import DjangoObjectType
+from graphene_django.filter import DjangoFilterConnectionField
 
 from bicycles.models import Bicycle
 
 
-class BicycleType(DjangoObjectType):
+class BicycleNode(DjangoObjectType):
     class Meta:
         model = Bicycle
+        filter_fields = {
+            'nickname': ['exact', 'icontains', 'istartswith'],
+        }
+        interfaces = (relay.Node,)
 
 
-class Query(object):
-    all_bicycles = graphene.List(BicycleType)
+class Query(ObjectType):
+    bicycle = relay.Node.Field(BicycleNode)
+    all_bicycles = DjangoFilterConnectionField(BicycleNode)
 
-    def resolve_all_bicycles(self, info, **kwargs):
-        # We can easily optimize query count in the resolve method
-        return Bicycle.objects.select_related('user').all()
