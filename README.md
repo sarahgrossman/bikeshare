@@ -54,7 +54,7 @@ This project uses token-based authentication provided by [Django Rest Framework]
 
 To obtain your user token, send a POST request to `http://localhost:8000/api-token-auth/` with a JSON body containing your `username` and `password`.
 
-For all subsequent requests, add a header `Authorization: Token: <your_token_here>`.
+For all subsequent requests, add a header `Authorization: Token <your_token_here>`.
 
 ## Running tests
 
