@@ -19,6 +19,7 @@ from django.urls import path
 from graphene_django.views import GraphQLView
 from rest_framework import routers
 from rest_framework.authtoken import views
+from rest_framework.schemas import get_schema_view
 
 from bicycles.views import BicycleViewSet
 from users.views import UserViewSet
@@ -38,4 +39,9 @@ urlpatterns = [
     url(r'^api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
     url(r'^graphql$', GraphQLView.as_view(graphiql=True)),
+    path('openapi', get_schema_view(
+        title="Bikeshare API",
+        description="Complete API for Bikeshare app",
+        version="0.1.0"
+    ), name='openapi-schema'),
 ]

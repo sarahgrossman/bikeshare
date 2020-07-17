@@ -1,0 +1,577 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    username:
+                      type: string
+                      description: Required. 150 characters or fewer. Letters, digits
+                        and @/./+/-/_ only.
+                      pattern: ^[\w.@+-]+$
+                      maxLength: 150
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 254
+                    is_staff:
+                      type: boolean
+                      description: Designates whether the user can log into this admin
+                        site.
+                    id:
+                      type: integer
+                      readOnly: true
+                    bicycles:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: integer
+                            readOnly: true
+                          nickname:
+                            type: string
+                            maxLength: 64
+                          owner:
+                            type: integer
+                        required:
+                        - nickname
+                        - owner
+                      readOnly: true
+                  required:
+                  - username
+          description: ''
+    post:
+      operationId: createUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+              required:
+              - username
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  id:
+                    type: integer
+                    readOnly: true
+                  bicycles:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        nickname:
+                          type: string
+                          maxLength: 64
+                        owner:
+                          type: integer
+                      required:
+                      - nickname
+                      - owner
+                    readOnly: true
+                required:
+                - username
+          description: ''
+  /users/{id}:
+    get:
+      operationId: retrieveUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  id:
+                    type: integer
+                    readOnly: true
+                  bicycles:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        nickname:
+                          type: string
+                          maxLength: 64
+                        owner:
+                          type: integer
+                      required:
+                      - nickname
+                      - owner
+                    readOnly: true
+                required:
+                - username
+          description: ''
+    put:
+      operationId: updateUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+              required:
+              - username
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  id:
+                    type: integer
+                    readOnly: true
+                  bicycles:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        nickname:
+                          type: string
+                          maxLength: 64
+                        owner:
+                          type: integer
+                      required:
+                      - nickname
+                      - owner
+                    readOnly: true
+                required:
+                - username
+          description: ''
+    patch:
+      operationId: partial_updateUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                username:
+                  type: string
+                  description: Required. 150 characters or fewer. Letters, digits
+                    and @/./+/-/_ only.
+                  pattern: ^[\w.@+-]+$
+                  maxLength: 150
+                email:
+                  type: string
+                  format: email
+                  maxLength: 254
+                is_staff:
+                  type: boolean
+                  description: Designates whether the user can log into this admin
+                    site.
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  username:
+                    type: string
+                    description: Required. 150 characters or fewer. Letters, digits
+                      and @/./+/-/_ only.
+                    pattern: ^[\w.@+-]+$
+                    maxLength: 150
+                  email:
+                    type: string
+                    format: email
+                    maxLength: 254
+                  is_staff:
+                    type: boolean
+                    description: Designates whether the user can log into this admin
+                      site.
+                  id:
+                    type: integer
+                    readOnly: true
+                  bicycles:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: integer
+                          readOnly: true
+                        nickname:
+                          type: string
+                          maxLength: 64
+                        owner:
+                          type: integer
+                      required:
+                      - nickname
+                      - owner
+                    readOnly: true
+                required:
+                - username
+          description: ''
+    delete:
+      operationId: destroyUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /bicycles:
+    get:
+      operationId: listBicycles
+      description: ''
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      readOnly: true
+                    nickname:
+                      type: string
+                      maxLength: 64
+                    owner:
+                      type: integer
+                  required:
+                  - nickname
+                  - owner
+          description: ''
+    post:
+      operationId: createBicycle
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                nickname:
+                  type: string
+                  maxLength: 64
+                owner:
+                  type: integer
+              required:
+              - nickname
+              - owner
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  nickname:
+                    type: string
+                    maxLength: 64
+                  owner:
+                    type: integer
+                required:
+                - nickname
+                - owner
+          description: ''
+  /bicycles/{id}:
+    get:
+      operationId: retrieveBicycle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this bicycle.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  nickname:
+                    type: string
+                    maxLength: 64
+                  owner:
+                    type: integer
+                required:
+                - nickname
+                - owner
+          description: ''
+    put:
+      operationId: updateBicycle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this bicycle.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                nickname:
+                  type: string
+                  maxLength: 64
+                owner:
+                  type: integer
+              required:
+              - nickname
+              - owner
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  nickname:
+                    type: string
+                    maxLength: 64
+                  owner:
+                    type: integer
+                required:
+                - nickname
+                - owner
+          description: ''
+    patch:
+      operationId: partial_updateBicycle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this bicycle.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                nickname:
+                  type: string
+                  maxLength: 64
+                owner:
+                  type: integer
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  nickname:
+                    type: string
+                    maxLength: 64
+                  owner:
+                    type: integer
+                required:
+                - nickname
+                - owner
+          description: ''
+    delete:
+      operationId: destroyBicycle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this bicycle.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+  /api-token-auth/:
+    post:
+      operationId: CreateObtainAuthToken
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''

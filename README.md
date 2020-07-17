@@ -34,6 +34,14 @@ Django Rest Framework also provides a browsable API that can be accessed at http
 
 Visit http://127.0.0.1:8000/graphql to launch GraphiQL. This feature is a WIP.
 
+## Viewing schemas
+
+There is a YAML representation of the current REST API schema in `openapi-schema.json`. To regenerate after making changes, run `docker-compose exec web python manage.py generateschema > openapi-schema.yml`.
+
+You can also view the most up-to-date schema programmatically by visiting `http://localhost:8000/openapi`. Currently this is formatted as YAML, but work is underway to convert to JSON.
+
+There is a JSON representation of the current GraphQL API schema in `graphql-schema.json`. To re-generate after making changes, run `docker-compose exec web python manage.py graphql_schema --schema bikeshare.schema.schema --out graphql-schema.json`.
+
 ## Interacting with the database
 
 At any time you can enter the db container and launch psql by running `docker-compose exec db psql -U postgres`.
